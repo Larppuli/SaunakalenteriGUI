@@ -1,1 +1,1 @@
-# SaunakalenteriGUI
+Saunakalenteri graafisella käyttöliittymällä
