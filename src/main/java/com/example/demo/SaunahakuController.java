@@ -40,7 +40,7 @@ public class SaunahakuController implements Initializable {
         if (!Objects.isNull(myChoiceBox.getValue())) {
             if (myChoiceBox.getValue().equals("Etsi saunan perusteella")) {
                 for (Saunomiskerta kerta : Saunomiskerta.avaaLista()) {
-                    if (kerta.getSauna().equals(syote.getText())) {
+                    if (kerta.getSauna().equalsIgnoreCase(syote.getText())) {
                         String tapahtuma = kerta.getSauna() + ", " + kerta.getPaiva();
                         saunalista.add(tapahtuma);
                     }

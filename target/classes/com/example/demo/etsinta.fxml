@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3E3E3E; -fx-border-color: b76303; -fx-border-insets: 4; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.EtsintaController">
+<VBox alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3E3E3E; -fx-border-color: b76303; -fx-border-insets: 4; -fx-border-width: 2;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.EtsintaController">
    <children>
-      <Button alignment="BASELINE_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#mainScene" prefHeight="25.0" prefWidth="38.0" text="←">
+      <Button id="edellinen" alignment="BASELINE_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#mainScene" prefHeight="25.0" prefWidth="37.0" text="←">
          <VBox.margin>
-            <Insets right="540.0" />
+            <Insets left="2.0" right="540.0" />
          </VBox.margin>
          <effect>
             <Lighting bumpInput="$null">
@@ -68,7 +68,7 @@
       </Text>
       <HBox alignment="CENTER" prefHeight="268.0" prefWidth="592.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#saunaScene" prefHeight="120.0" prefWidth="472.0" text="Saunalla tai vuodella">
+            <Button id="nappi" mnemonicParsing="false" onAction="#saunaScene" prefHeight="120.0" prefWidth="472.0" stylesheets="@styles.css" text="Saunalla tai vuodella">
                <effect>
                   <Lighting bumpInput="$null">
                      <light>
@@ -97,7 +97,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="300.0" prefWidth="500.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#kaikkiScene" prefHeight="120.0" prefWidth="472.0" text="Kaikki kerrat">
+            <Button id="nappi" mnemonicParsing="false" onAction="#kaikkiScene" prefHeight="120.0" prefWidth="472.0" stylesheets="@styles.css" text="Kaikki kerrat">
                <effect>
                   <Lighting bumpInput="$null">
                      <light>

@@ -120,6 +120,15 @@ public class Saunomiskerta implements Serializable {
 
     // Palauttaa merkkijonon parametreina saaduista saunasta ja määrästä
     public static String kasaaYleisinString(String sauna, int maara) {
-        return sauna + ", " + String.valueOf(maara) + "kpl";
+        return String.format("%s, %2d kpl",sauna, maara);
+    }
+
+    //Luodaan lista, joka sisältää tietyn viikonpäivän niin monta kertaa kuin sinä päivänä on saunottu
+    public static ArrayList<String> luoPaivaLista() throws IOException, ClassNotFoundException {
+        ArrayList<String> lista = new ArrayList<>();
+        for (Saunomiskerta saunomiskerta : avaaLista()) {
+            lista.add(String.valueOf(saunomiskerta.getPaiva().getDayOfWeek()));
+        }
+        return lista;
     }
 }

@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3E3E3E; -fx-border-width: 2; -fx-border-insets: 4; -fx-border-color: b76303;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.KaikkiController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3E3E3E; -fx-border-width: 2; -fx-border-insets: 4; -fx-border-color: b76303;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.KaikkiController">
    <children>
       <ListView fx:id="myListView" layoutX="62.0" layoutY="122.0" prefHeight="257.0" prefWidth="252.0" style="-fx-border-color: black; -fx-border-width: 2;">
          <effect>
@@ -53,7 +53,7 @@
             </Text>
          </children>
       </AnchorPane>
-      <Button alignment="BASELINE_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#etsintaScene" prefHeight="25.0" prefWidth="37.0" text="←" AnchorPane.leftAnchor="7.5" AnchorPane.topAnchor="8.5">
+      <Button id="edellinen" alignment="BASELINE_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#etsintaScene" prefHeight="22.0" prefWidth="37.0" text="←" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="7.0">
          <effect>
             <Lighting bumpInput="$null">
                <light>
