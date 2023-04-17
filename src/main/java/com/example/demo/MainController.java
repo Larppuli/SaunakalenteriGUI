@@ -8,14 +8,13 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-    private Stage stage = new Stage(StageStyle.UTILITY);
+    private Stage stage = new Stage(StageStyle.TRANSPARENT);
 
     @FXML
     protected void lisaysScene(ActionEvent event) throws IOException {
@@ -38,7 +37,7 @@ public class MainController implements Initializable {
     @FXML
     protected void taulukotScene(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("taulukot.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 1000);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();

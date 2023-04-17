@@ -5,14 +5,9 @@ import java.util.ArrayList;
 
 public class Saunamäärä {
     private String sauna;
-    private int määrä;
 
     public Saunamäärä(String sauna, int määrä) {
         this.sauna = sauna;
-    }
-
-    public int getMäärä() {
-        return määrä;
     }
 
     public String getSauna() {
@@ -34,5 +29,3 @@ public class Saunamäärä {
     }
 
 }
-
-

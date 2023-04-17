@@ -32,7 +32,7 @@
             </Lighting>
          </effect>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="NONE" />
          </cursor>
       </Button>
       <Text stroke="BLACK" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="1.5" text="Etsi saunomiskertaa">
@@ -87,7 +87,7 @@
                   <Font name="Broadway" size="22.0" />
                </font>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="NONE" />
                </cursor>
             </Button>
          </children>
@@ -116,7 +116,7 @@
                   <Insets bottom="40.0" left="35.0" right="40.0" />
                </HBox.margin>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="NONE" />
                </cursor>
             </Button>
          </children>

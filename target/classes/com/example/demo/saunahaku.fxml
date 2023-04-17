@@ -19,6 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3E3E3E; -fx-border-color: b76303; -fx-border-insets: 4; -fx-border-width: 2;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.SaunahakuController">
    <children>
       <Text layoutX="155.0" layoutY="55.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="1.5" text="Saunahaku">
@@ -52,7 +53,7 @@
             </LinearGradient>
          </fill>
       </Text>
-      <ListView fx:id="myListView" layoutX="64.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 2; -fx-border-color: black;">
+      <ListView fx:id="myListView" layoutX="64.0" layoutY="100.0" prefHeight="233.0" prefWidth="200.0" style="-fx-border-width: 2; -fx-border-color: black;">
          <effect>
             <Lighting>
                <bumpInput>
@@ -66,7 +67,8 @@
                   </Light.Distant>
                </light>
             </Lighting>
-         </effect></ListView>
+         </effect>
+      </ListView>
       <TextField fx:id="syote" layoutX="341.0" layoutY="134.0" prefHeight="25.0" prefWidth="162.0">
          <effect>
             <Lighting>
@@ -81,7 +83,8 @@
                   </Light.Distant>
                </light>
             </Lighting>
-         </effect></TextField>
+         </effect>
+      </TextField>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3e3e3e" height="144.0" layoutX="336.0" layoutY="189.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 2;" width="220.0" />
       <ChoiceBox fx:id="myChoiceBox" layoutX="341.0" layoutY="100.0" prefHeight="25.0" prefWidth="162.0">
          <effect>
@@ -97,7 +100,8 @@
                   </Light.Distant>
                </light>
             </Lighting>
-         </effect></ChoiceBox>
+         </effect>
+      </ChoiceBox>
       <Button id="haku" layoutX="513.0" layoutY="134.0" mnemonicParsing="false" onAction="#HaeSauna" text="Hae">
          <effect>
             <Lighting>
@@ -114,8 +118,9 @@
             </Lighting>
          </effect>
          <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
+            <Cursor fx:constant="NONE" />
+         </cursor>
+      </Button>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3e3e3e" height="132.0" layoutX="341.0" layoutY="195.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" width="210.0" />
       <Label layoutX="352.0" layoutY="234.0" text="Kertoja yhteensä: " textFill="WHITE" />
       <Label fx:id="yhteensa" layoutX="446.0" layoutY="234.0" textFill="WHITE" />
@@ -133,7 +138,7 @@
             </Lighting>
          </effect>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="NONE" />
          </cursor>
       </Button>
       <Text fill="WHITE" layoutX="369.0" layoutY="221.0" stroke="#000001" strokeType="OUTSIDE" strokeWidth="2.0" text="Statistiikkaa">

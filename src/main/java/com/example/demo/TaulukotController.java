@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +25,12 @@ public class TaulukotController implements Initializable {
 
     @FXML
     private PieChart myPieChart;
+
+    @FXML
+    private Label vuosipaivat;
+
+    @FXML
+    private ListView<String> myListView;
 
     @FXML
     protected void mainScene(ActionEvent event) throws IOException {
@@ -69,5 +77,13 @@ public class TaulukotController implements Initializable {
 
         myBarChart.getData().addAll(set1);
         myBarChart.setLegendVisible(false);
+
+        try {
+            myListView.getItems().addAll(Saunomiskerta.palautaVuosipaivalista());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

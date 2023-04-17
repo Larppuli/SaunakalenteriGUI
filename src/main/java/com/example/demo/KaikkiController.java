@@ -8,9 +8,11 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class KaikkiController implements Initializable {
@@ -19,6 +21,7 @@ public class KaikkiController implements Initializable {
     @FXML private ListView<String> myListView;
     @FXML private Label yhteensa;
     @FXML private Label yleisin;
+    @FXML private String valittu;
 
     /*
     Määritellään valikko, josta voi valita etsiikö saunomiskertaa saunan tai vuoden
@@ -31,6 +34,24 @@ public class KaikkiController implements Initializable {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    public String handleMouseClick(MouseEvent arg0) {
+        valittu = myListView.getSelectionModel().getSelectedItem();
+        return valittu;
+    }
+
+    //Määritellään metodi, jolla valittu sauna poistetaan data.bin-tiedostosta
+    @FXML
+    public void saunanPoisto(ActionEvent event) throws IOException, ClassNotFoundException {
+        if (!Objects.isNull(valittu)) {
+            Saunomiskerta.poistaListasta(valittu);
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("kaikki.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+        }
     }
 
     @Override

@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="600.0" style="-fx-background-color: #3e3e3e; -fx-border-color: b76303; -fx-border-width: 2; -fx-border-insets: 4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.TaulukotController">
-   <children>
-      <Button id="edellinen" layoutX="11.0" layoutY="14.0" mnemonicParsing="false" onAction="#mainScene" prefHeight="22.0" prefWidth="37.0" stylesheets="@styles.css" text="←" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="7.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Button>
-      <PieChart fx:id="myPieChart" layoutX="-28.0" layoutY="48.0" prefHeight="457.0" prefWidth="633.0" stylesheets="@styles.css" title="Saunotut saunat" />
-      <BarChart fx:id="myBarChart" barGap="1.0" categoryGap="1.0" layoutX="11.0" layoutY="503.0" prefHeight="466.0" prefWidth="567.0" stylesheets="@styles.css" title="Saunomiskertoja viikonpäivinä">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" fx:id="x" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis fx:id="y" side="LEFT" />
-        </yAxis>
-      </BarChart>
-   </children>
-</AnchorPane>
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1110.0" prefWidth="600.0" style="-fx-background-color: #3E3E3E; -fx-border-color: b76303; -fx-border-insets: 4; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.TaulukotController">
+   <content>
+      <AnchorPane prefHeight="1097.0" prefWidth="573.0" style="-fx-background-color: #3E3E3E;">
+         <children>
+            <Button id="edellinen" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#mainScene" prefHeight="22.0" prefWidth="37.0" stylesheets="@styles.css" text="←" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="7.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <PieChart id="myPieChart" fx:id="myPieChart" layoutX="6.0" layoutY="20.0" prefHeight="448.0" prefWidth="550.0" stylesheets="@styles.css" title="Saunotut saunat" />
+            <BarChart fx:id="myBarChart" layoutX="-7.0" layoutY="502.0" prefHeight="371.0" prefWidth="565.0" stylesheets="@styles.css" title="Saunomiset viikonpäivinä">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <Label layoutX="194.0" layoutY="878.0" text="Vuosipäiviä" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="37.0" />
+               </font>
+            </Label>
+            <ListView id="vuosipaivat" fx:id="myListView" layoutX="21.0" layoutY="950.0" prefHeight="123.0" prefWidth="532.0" style="-fx-border-color: black; -fx-border-width: 2;" stylesheets="@styles.css" />
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

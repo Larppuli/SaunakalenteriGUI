@@ -13,6 +13,7 @@
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
+    -fx-cursor: hand;
 }
 
 #nappi:hover {
@@ -28,6 +29,7 @@
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
+    -fx-cursor: hand;
 }
 
 .chart-pie-label-line {
@@ -37,7 +39,7 @@
 
 .chart-pie-label {
     -fx-fill: white;
-    -fx-font-size: 1em;
+    -fx-font-size: 0.8em;
 }
 
 .default-color0.chart-bar { -fx-bar-fill: #C44B00; }
@@ -67,6 +69,7 @@
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
+    -fx-cursor: hand;
 }
 
 #edellinen:hover {
@@ -79,6 +82,7 @@
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
+    -fx-cursor: hand;
 }
 
 #haku {
@@ -91,6 +95,7 @@
     -fx-font-family: "Arial";
     -fx-text-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
+    -fx-cursor: hand;
 }
 
 #haku:hover {
@@ -102,6 +107,7 @@
     -fx-font-family: "Arial";
     -fx-text-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
+    -fx-cursor: hand;
 }
 
 #tallennus {
@@ -115,6 +121,7 @@
     -fx-font-size: 15;
     -fx-text-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
+    -fx-cursor: hand;
 }
 
 #tallennus:hover {
@@ -128,4 +135,21 @@
     -fx-font-size: 40;
     -fx-text-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
+    -fx-cursor: hand;
+}
+
+#vuosipaivat .list-cell:odd {
+    -fx-background-color: #8B8B8B;
+    -fx-text-fill: black;
+    -fx-font-size: 25;
+    -fx-font-family: "MS Gothic";
+    -fx-alignment: center;
+}
+
+#vuosipaivat .list-cell:even {
+    -fx-background-color: #676767;
+    -fx-text-fill: black;
+    -fx-font-size: 25;
+    -fx-font-family: "MS Gothic";
+    -fx-alignment: center;
 }

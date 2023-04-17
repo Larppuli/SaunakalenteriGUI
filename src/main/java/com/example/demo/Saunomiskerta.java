@@ -2,8 +2,11 @@ package com.example.demo;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 public class Saunomiskerta implements Serializable {
     @Serial
@@ -33,12 +36,12 @@ public class Saunomiskerta implements Serializable {
         ArrayList<String> tapahtumalista = new ArrayList<>();
         for (Saunomiskerta tapahtuma : avaaLista()) {
             String kerta = tapahtuma.getSauna() + ", " + tapahtuma.getPaiva();
-            tapahtumalista.add(0, kerta);
+            tapahtumalista.add(kerta);
         }
         return tapahtumalista;
     }
 
-    // Luo Saunomiskerta-olion parametreista ja lisää olion
+    // Luo Saunomiskerta-olion parametreista ja lisää olion listaan
     public static void kirjoitaTiedostoon(String sauna, LocalDate paiva) throws IOException, ClassNotFoundException {
         Saunomiskerta tapahtuma = new Saunomiskerta(paiva, sauna);
         ObjectOutputStream oos;
@@ -77,6 +80,31 @@ public class Saunomiskerta implements Serializable {
         }
     }
 
+    // Luodaan merkkijonotyyppisistä saunomiskertoja kuvaavista olioista lista, josta on poistettu valittu alkio. Lista välitetään kirjoitaListaTiedostoon-metodille
+    public static void poistaListasta(String poistettava) throws IOException, ClassNotFoundException {
+        ArrayList<String> poistolista = luoTapahtumaLista();
+        poistolista.remove(poistettava);
+        kirjoitaListaTiedostoon(poistolista);
+    }
+
+    // Muunnetaan listan merkkijonotyyppiset saunomiskertoja kuvaavat oliot Saunomiskerta-olioiksi ja kirjoitetaan ne data.bin-tiedostoon
+    public static void kirjoitaListaTiedostoon(ArrayList<String> lista) throws IOException, ClassNotFoundException {
+        alustaTiedosto();
+        for (String alkio : lista) {
+            Saunomiskerta olio = muunnaOlioksi(alkio);
+            kirjoitaTiedostoon(olio.getSauna(), olio.getPaiva());
+        }
+    }
+
+    // Muunnetaan muodossa "sauna, päivämäärä" oleva merkkijono-olio Saunomiskerta-olioksi
+    public static Saunomiskerta muunnaOlioksi(String tapahtuma) {
+        String paivaString = tapahtuma.substring(tapahtuma.length()-10);
+        String sauna = tapahtuma.substring(0, tapahtuma.length()-12);
+        LocalDate localDate = LocalDate.parse(paivaString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        return new Saunomiskerta(localDate, sauna);
+    }
+
     // Palauttaa Saunomiskerta-olioita sisältävän listan, jonka jäsenet on lisätty data.bin-tiedostosta
     public static ArrayList<Saunomiskerta> avaaLista() throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(tiedosto));
@@ -98,7 +126,7 @@ public class Saunomiskerta implements Serializable {
         return yleisin;
     }
 
-    // Palauttaa String-olioita sisältävän listan, johon lisää avaaLista()-metodin palauttaman Saunomiskerta-olioita sisältävän listan jäsenten sauna
+    // Palauttaa String-olioita sisältävän listan, johon lisää avaaLista()-metodin palauttaman Saunomiskerta-olioita sisältävän listan jäsenten saunat
     public static ArrayList<String> luoSaunaLista() throws IOException, ClassNotFoundException {
         ArrayList<String> saunalista = new ArrayList<>();
         for (Saunomiskerta saunomiskerta : avaaLista()) {
@@ -130,5 +158,43 @@ public class Saunomiskerta implements Serializable {
             lista.add(String.valueOf(saunomiskerta.getPaiva().getDayOfWeek()));
         }
         return lista;
+    }
+
+    // Tarkastetaan onko saunomiskertoja tallennettu senhetkiselle päivämäärälle
+    public static ArrayList<Saunomiskerta> etsiVuosipaiva() throws IOException, ClassNotFoundException {
+        ArrayList<Saunomiskerta> saunalista = new ArrayList<>();
+        for (Saunomiskerta saunakerta : avaaLista()) {
+            if (String.valueOf(saunakerta.getPaiva()).substring(5,10).equals(String.valueOf(LocalDateTime.now()).substring(5,10))) {
+                saunalista.add(saunakerta);
+            }
+        }
+        return saunalista;
+    }
+
+    //Muunnetaan etsiVuosipäivä()-metodin palauttama lista merkkijonoksi. METODI EI KÄYTÖSSÄ
+    public static String muunnaVuosipaivaMerkkijonoksi() throws IOException, ClassNotFoundException {
+        String alimerkkijono;
+        String merkkijono = "";
+        for (Saunomiskerta kerta : etsiVuosipaiva()) {
+            alimerkkijono = "";
+            alimerkkijono = alimerkkijono.concat(kerta.getSauna() + ", " + kerta.getPaiva() + "\n");
+            merkkijono = merkkijono.concat(alimerkkijono);
+        }
+        return merkkijono;
+    }
+
+    public static ArrayList<String> palautaVuosipaivalista() throws IOException, ClassNotFoundException {
+        ArrayList<String> vuosipaivalista = new ArrayList<>();
+        if (etsiVuosipaiva().size() != 0) {
+            etsiVuosipaiva().stream()
+                    .forEach(item -> {
+                        String item2 = item.getSauna() + ", " + item.getPaiva();
+                        vuosipaivalista.add(item2);
+                    });
+        }
+        else {
+            vuosipaivalista.add("Ei saunomiskertoja tällä päivämäärällä");
+        }
+        return vuosipaivalista;
     }
 }

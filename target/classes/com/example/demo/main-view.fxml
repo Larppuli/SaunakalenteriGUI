@@ -25,7 +25,29 @@
             </Lighting>
          </effect>
       </Text>
-      <Button id="nappi" alignment="BASELINE_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#lisaysScene" prefHeight="80.0" prefWidth="447.0" text="Lisää saunomiskerta">
+      <Button id="nappi" alignment="BASELINE_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#lisaysScene" prefHeight="0.0" prefWidth="450.0" text="Lisää saunomiskerta">
+         <font>
+            <Font name="Broadway" size="17.0" />
+         </font>
+         <effect>
+            <Lighting bumpInput="$null">
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.6823529601097107" green="0.6627451181411743" blue="0.6627451181411743" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </Button>
+      <Button id="nappi" alignment="BASELINE_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#etsintaScene" prefHeight="80.0" prefWidth="450.0" text="Etsi saunomiskerta">
          <font>
             <Font name="Broadway" size="32.0" />
          </font>
@@ -41,37 +63,15 @@
             </Lighting>
          </effect>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="NONE" />
          </cursor>
          <VBox.margin>
             <Insets />
          </VBox.margin>
       </Button>
-      <Button id="nappi" alignment="BASELINE_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#etsintaScene" prefHeight="80.0" prefWidth="447.0" text="Etsi saunomiskerta">
-         <font>
-            <Font name="Broadway" size="32.0" />
-         </font>
-         <effect>
-            <Lighting bumpInput="$null">
-               <light>
-                  <Light.Distant>
-                     <color>
-                        <Color red="0.6823529601097107" green="0.6627451181411743" blue="0.6627451181411743" />
-                     </color>
-                  </Light.Distant>
-               </light>
-            </Lighting>
-         </effect>
+      <Button id="nappi" alignment="BASELINE_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#taulukotScene" prefHeight="80.0" prefWidth="450.0" text="Tarkastele kaavioita">
          <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-      </Button>
-      <Button id="nappi" alignment="BASELINE_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#taulukotScene" prefHeight="80.0" prefWidth="447.0" text="Tarkastele kaavioita">
-         <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="NONE" />
          </cursor>
          <effect>
             <Lighting>
@@ -83,6 +83,9 @@
                </light>
             </Lighting>
          </effect>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </Button>
    </children>
    <opaqueInsets>
