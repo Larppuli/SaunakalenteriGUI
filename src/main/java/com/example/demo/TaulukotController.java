@@ -32,6 +32,7 @@ public class TaulukotController implements Initializable {
     @FXML
     private ListView<String> myListView;
 
+    // Määritellään main-sceneen siirtyminen
     @FXML
     protected void mainScene(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));

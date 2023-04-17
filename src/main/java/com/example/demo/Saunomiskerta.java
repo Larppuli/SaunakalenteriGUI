@@ -183,6 +183,7 @@ public class Saunomiskerta implements Serializable {
         return merkkijono;
     }
 
+    // Palauttaa senhetkiselle päivämäärälle aikaisempina vuosina tallennetut saunomiskerrat merkkijonolistassa
     public static ArrayList<String> palautaVuosipaivalista() throws IOException, ClassNotFoundException {
         ArrayList<String> vuosipaivalista = new ArrayList<>();
         if (etsiVuosipaiva().size() != 0) {

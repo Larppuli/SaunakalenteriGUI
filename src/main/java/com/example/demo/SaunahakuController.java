@@ -34,6 +34,7 @@ public class SaunahakuController implements Initializable {
         stage.show();
     }
 
+    // Määritellään toiminnallisuus saunahaun hae-napille
     public void HaeSauna() throws IOException, ClassNotFoundException {
         ArrayList<String> saunalista = new ArrayList<>();
         ArrayList<String> saunalista2 = new ArrayList<>();

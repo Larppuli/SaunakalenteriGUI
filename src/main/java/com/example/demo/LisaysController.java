@@ -29,6 +29,7 @@ public class LisaysController implements Initializable {
         stage.show();
     }
 
+    // Määritellään saunomiskerran tallennus
     @FXML
     public void tallennus(ActionEvent event) throws IOException, ClassNotFoundException, InterruptedException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("lisays.fxml"));
