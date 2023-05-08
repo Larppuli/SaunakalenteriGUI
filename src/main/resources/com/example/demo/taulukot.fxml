@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -10,32 +9,47 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1110.0" prefWidth="600.0" style="-fx-background-color: #3E3E3E; -fx-border-color: b76303; -fx-border-insets: 4; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.TaulukotController">
-   <content>
-      <AnchorPane prefHeight="1097.0" prefWidth="573.0" style="-fx-background-color: #3E3E3E;">
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3E3E3E; -fx-border-color: b76303; -fx-border-insets: 4; -fx-border-width: 2;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.TaulukotController">
+   <center>
+      <ScrollPane maxHeight="1300.0" maxWidth="586.0" minHeight="356.0" minWidth="586.0" prefHeight="356.0" prefWidth="586.0" style="-fx-background-color: #3E3E3E;" stylesheets="@styles.css">
+         <content>
+            <AnchorPane prefHeight="1100.0" prefWidth="571.0" style="-fx-background-color: #3E3E3E;">
+               <children>
+                  <PieChart id="myPieChart" fx:id="myPieChart" layoutX="12.0" prefHeight="448.0" prefWidth="550.0" stylesheets="@styles.css" title="Saunotut saunat" />
+                  <BarChart fx:id="myBarChart" layoutX="-7.0" layoutY="502.0" prefHeight="371.0" prefWidth="565.0" stylesheets="@styles.css" title="Saunomiset viikonpäivinä">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+                  <Label layoutX="194.0" layoutY="878.0" text="Vuosipäiviä" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="37.0" />
+                     </font>
+                  </Label>
+                  <ListView id="vuosipaivat" fx:id="myListView" layoutX="21.0" layoutY="950.0" prefHeight="123.0" prefWidth="532.0" style="-fx-border-color: black; -fx-border-width: 2;" stylesheets="@styles.css" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </center>
+   <top>
+      <AnchorPane prefHeight="22.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="edellinen" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#mainScene" prefHeight="22.0" prefWidth="37.0" stylesheets="@styles.css" text="←" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="7.0">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <PieChart id="myPieChart" fx:id="myPieChart" layoutX="6.0" layoutY="20.0" prefHeight="448.0" prefWidth="550.0" stylesheets="@styles.css" title="Saunotut saunat" />
-            <BarChart fx:id="myBarChart" layoutX="-7.0" layoutY="502.0" prefHeight="371.0" prefWidth="565.0" stylesheets="@styles.css" title="Saunomiset viikonpäivinä">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </BarChart>
-            <Label layoutX="194.0" layoutY="878.0" text="Vuosipäiviä" textFill="WHITE">
-               <font>
-                  <Font name="Segoe UI" size="37.0" />
-               </font>
-            </Label>
-            <ListView id="vuosipaivat" fx:id="myListView" layoutX="21.0" layoutY="950.0" prefHeight="123.0" prefWidth="532.0" style="-fx-border-color: black; -fx-border-width: 2;" stylesheets="@styles.css" />
+            <Button id="edellinen" mnemonicParsing="false" onAction="#mainScene" prefHeight="22.0" prefWidth="37.0" text="←" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="3.0" />
          </children>
       </AnchorPane>
-   </content>
-</ScrollPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="22.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <AnchorPane prefHeight="0.0" prefWidth="30.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>
