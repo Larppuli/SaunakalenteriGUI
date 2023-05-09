@@ -23,7 +23,7 @@
 
 <BorderPane style="-fx-background-color: #3E3E3E; -fx-border-color: b76303; -fx-border-insets: 4; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.LisaysController">
    <center>
-      <VBox alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#tallennus" prefHeight="375.0" prefWidth="600.0" style="-fx-border-width: 2; -fx-border-insets: 4;" stylesheets="@styles.css">
+      <VBox alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#tallennus" prefHeight="378.0" prefWidth="600.0" style="-fx-border-width: 2; -fx-border-insets: 4;" stylesheets="@styles.css">
          <children>
             <Text fx:id="otsikko" stroke="BLACK" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="1.5" text="Saunan lisäys">
                <font>
@@ -167,7 +167,7 @@
    <top>
       <AnchorPane prefHeight="22.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="edellinen" minHeight="22.0" mnemonicParsing="false" onAction="#mainScene" prefWidth="37.0" stylesheets="@styles.css" text="←" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="3.0" />
+            <Button id="edellinen" layoutX="21.0" layoutY="-1.0" mnemonicParsing="false" onAction="#mainScene" prefHeight="22.0" prefWidth="37.0" stylesheets="@styles.css" text="←" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="3.0" />
          </children>
       </AnchorPane>
    </top>
