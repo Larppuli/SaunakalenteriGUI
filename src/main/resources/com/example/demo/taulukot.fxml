@@ -12,15 +12,14 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3E3E3E; -fx-border-color: b76303; -fx-border-insets: 4; -fx-border-width: 2;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.TaulukotController">
    <center>
-      <ScrollPane maxHeight="1300.0" maxWidth="586.0" minHeight="356.0" minWidth="586.0" prefHeight="356.0" prefWidth="586.0" style="-fx-background-color: #3E3E3E;" stylesheets="@styles.css">
+      <ScrollPane maxHeight="1100.0" maxWidth="586.0" minHeight="356.0" minWidth="586.0" prefHeight="356.0" prefWidth="586.0" style="-fx-background-color: #3E3E3E;" stylesheets="@styles.css">
          <content>
             <AnchorPane prefHeight="1100.0" prefWidth="571.0" style="-fx-background-color: #3E3E3E;">
                <children>
-                  <PieChart id="myPieChart" fx:id="myPieChart" layoutX="12.0" prefHeight="448.0" prefWidth="550.0" stylesheets="@styles.css" title="Saunotut saunat" />
-                  <BarChart fx:id="myBarChart" layoutX="-7.0" layoutY="502.0" prefHeight="371.0" prefWidth="565.0" stylesheets="@styles.css" title="Saunomiset viikonpäivinä">
+                  <PieChart id="myPieChart" fx:id="myPieChart" layoutX="12.0" prefHeight="448.0" prefWidth="550.0" style="-fx-background-color: #3E3E3E;" stylesheets="@styles.css" title="Saunotut saunat" />
+                  <BarChart fx:id="myBarChart" layoutX="-7.0" layoutY="502.0" prefHeight="371.0" prefWidth="565.0" style="-fx-background-color: #3E3E3E;" stylesheets="@styles.css" title="Saunomiset viikonpäivinä">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -33,7 +32,7 @@
                         <Font name="Segoe UI" size="37.0" />
                      </font>
                   </Label>
-                  <ListView id="vuosipaivat" fx:id="myListView" layoutX="21.0" layoutY="950.0" prefHeight="123.0" prefWidth="532.0" style="-fx-border-color: black; -fx-border-width: 2;" stylesheets="@styles.css" />
+                  <ListView id="vuosipaivat" fx:id="myListView" layoutX="21.0" layoutY="950.0" prefHeight="123.0" prefWidth="532.0" style="-fx-border-color: black; -fx-border-width: 2; -fx-background-color: #3E3E3E;" stylesheets="@styles.css" />
                </children>
             </AnchorPane>
          </content>
