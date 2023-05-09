@@ -16,7 +16,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane style="-fx-background-color: #3E3E3E; -fx-border-insets: 4; -fx-border-color: b76303; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.EtsintaController">
    <center>
       <VBox alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="600.0" stylesheets="@styles.css">
@@ -119,7 +118,7 @@
    <top>
       <AnchorPane prefHeight="22.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="edellinen" layoutY="-1.0" minHeight="22.0" mnemonicParsing="false" prefWidth="37.0" stylesheets="@styles.css" text="←" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="3.0" />
+            <Button id="edellinen" layoutY="-1.0" minHeight="22.0" mnemonicParsing="false" onAction="#mainScene" prefWidth="37.0" stylesheets="@styles.css" text="←" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="3.0" />
          </children>
       </AnchorPane>
    </top>
