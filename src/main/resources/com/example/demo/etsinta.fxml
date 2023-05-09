@@ -6,6 +6,8 @@
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -14,118 +16,110 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3E3E3E; -fx-border-color: b76303; -fx-border-insets: 4; -fx-border-width: 2;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.EtsintaController">
-   <children>
-      <Button id="edellinen" alignment="BASELINE_CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#mainScene" prefHeight="25.0" prefWidth="37.0" text="←">
-         <VBox.margin>
-            <Insets left="2.0" right="540.0" />
-         </VBox.margin>
-         <effect>
-            <Lighting bumpInput="$null">
-               <light>
-                  <Light.Distant>
-                     <color>
-                        <Color red="0.6823529601097107" green="0.6627451181411743" blue="0.6627451181411743" />
-                     </color>
-                  </Light.Distant>
-               </light>
-            </Lighting>
-         </effect>
-         <cursor>
-            <Cursor fx:constant="NONE" />
-         </cursor>
-      </Button>
-      <Text stroke="BLACK" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="1.5" text="Etsi saunomiskertaa">
-         <font>
-            <Font name="Broadway" size="41.0" />
-         </font>
-         <effect>
-            <Lighting diffuseConstant="1.15" specularConstant="0.56" surfaceScale="3.92">
-               <bumpInput>
-                  <Bloom />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect>
-         <fill>
-            <LinearGradient endX="1.0" endY="1.0">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.8705882430076599" green="0.800000011920929" blue="0.05098039284348488" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.8470588326454163" green="0.3843137323856354" blue="0.09803921729326248" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </fill>
-      </Text>
-      <HBox alignment="CENTER" prefHeight="268.0" prefWidth="592.0">
+<BorderPane style="-fx-background-color: #3E3E3E; -fx-border-insets: 4; -fx-border-color: b76303; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.EtsintaController">
+   <center>
+      <VBox alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="600.0" stylesheets="@styles.css">
          <children>
-            <Button id="nappi" mnemonicParsing="false" onAction="#saunaScene" prefHeight="120.0" prefWidth="472.0" stylesheets="@styles.css" text="Saunalla tai vuodella">
+            <Text stroke="BLACK" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="1.5" text="Etsi saunomiskertaa">
+               <font>
+                  <Font name="Broadway" size="41.0" />
+               </font>
                <effect>
-                  <Lighting bumpInput="$null">
+                  <Lighting diffuseConstant="1.15" specularConstant="0.56" surfaceScale="3.92">
+                     <bumpInput>
+                        <Bloom />
+                     </bumpInput>
                      <light>
-                        <Light.Distant>
-                           <color>
-                              <Color red="0.6823529601097107" green="0.6627451181411743" blue="0.6627451181411743" />
-                           </color>
-                        </Light.Distant>
+                        <Light.Distant />
                      </light>
                   </Lighting>
                </effect>
-               <HBox.margin>
-                  <Insets left="35.0" right="42.0" />
-               </HBox.margin>
-               <font>
-                  <Font name="Broadway" size="22.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="NONE" />
-               </cursor>
-            </Button>
-         </children>
-         <padding>
-            <Insets top="30.0" />
-         </padding>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="300.0" prefWidth="500.0">
-         <children>
-            <Button id="nappi" mnemonicParsing="false" onAction="#kaikkiScene" prefHeight="120.0" prefWidth="472.0" stylesheets="@styles.css" text="Kaikki kerrat">
-               <effect>
-                  <Lighting bumpInput="$null">
-                     <light>
-                        <Light.Distant>
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
                            <color>
-                              <Color red="0.6823529601097107" green="0.6627451181411743" blue="0.6627451181411743" />
+                              <Color red="0.8705882430076599" green="0.800000011920929" blue="0.05098039284348488" />
                            </color>
-                        </Light.Distant>
-                     </light>
-                  </Lighting>
-               </effect>
-               <font>
-                  <Font name="Broadway" size="22.0" />
-               </font>
-               <HBox.margin>
-                  <Insets bottom="40.0" left="35.0" right="40.0" />
-               </HBox.margin>
-               <cursor>
-                  <Cursor fx:constant="NONE" />
-               </cursor>
-            </Button>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.8470588326454163" green="0.3843137323856354" blue="0.09803921729326248" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Text>
+            <HBox alignment="CENTER" prefHeight="268.0" prefWidth="592.0">
+               <children>
+                  <Button id="nappi" mnemonicParsing="false" onAction="#saunaScene" prefHeight="120.0" prefWidth="472.0" stylesheets="@styles.css" text="Saunalla tai vuodella">
+                     <effect>
+                        <Lighting bumpInput="$null">
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="0.6823529601097107" green="0.6627451181411743" blue="0.6627451181411743" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                     <HBox.margin>
+                        <Insets left="35.0" right="42.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Broadway" size="22.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="NONE" />
+                     </cursor>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="300.0" prefWidth="500.0">
+               <children>
+                  <Button id="nappi" mnemonicParsing="false" onAction="#kaikkiScene" prefHeight="120.0" prefWidth="472.0" stylesheets="@styles.css" text="Kaikki kerrat">
+                     <effect>
+                        <Lighting bumpInput="$null">
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="0.6823529601097107" green="0.6627451181411743" blue="0.6627451181411743" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                     <font>
+                        <Font name="Broadway" size="22.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="40.0" left="35.0" right="40.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="NONE" />
+                     </cursor>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
          </children>
-         <padding>
-            <Insets top="20.0" />
-         </padding>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-      </HBox>
-   </children>
-</VBox>
+      </VBox>
+   </center>
+   <top>
+      <AnchorPane prefHeight="22.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button id="edellinen" layoutY="-1.0" minHeight="22.0" mnemonicParsing="false" onAction="#mainScene" prefWidth="37.0" stylesheets="@styles.css" text="←" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="3.0" />
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
