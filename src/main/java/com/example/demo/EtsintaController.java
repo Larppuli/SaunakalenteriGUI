@@ -43,7 +43,6 @@ public class EtsintaController implements Initializable {
         stage.show();
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

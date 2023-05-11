@@ -36,7 +36,7 @@ public class LisaysController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         if (!(sauna.getText()=="") && !Objects.isNull(paiva.getValue())) {
-            Saunomiskerta.kirjoitaTiedostoon(sauna.getText(), paiva.getValue());
+            Kayttaja.kirjoitaTiedostoon(sauna.getText(), paiva.getValue());
         }
         stage.setScene(scene);
     }

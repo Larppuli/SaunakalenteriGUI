@@ -40,7 +40,7 @@ public class SaunahakuController implements Initializable {
         ArrayList<String> saunalista2 = new ArrayList<>();
         if (!Objects.isNull(myChoiceBox.getValue())) {
             if (myChoiceBox.getValue().equals("Etsi saunan perusteella")) {
-                for (Saunomiskerta kerta : Saunomiskerta.avaaLista()) {
+                for (Saunomiskerta kerta : Saunomiskerta.avaaKayttajanLista()) {
                     if (kerta.getSauna().equalsIgnoreCase(syote.getText())) {
                         String tapahtuma = kerta.getSauna() + ", " + kerta.getPaiva();
                         saunalista.add(tapahtuma);
@@ -49,7 +49,7 @@ public class SaunahakuController implements Initializable {
                 yleisin.setText("");
             }
             else if (myChoiceBox.getValue().equals("Etsi vuoden perusteella")) {
-                for (Saunomiskerta kerta : Saunomiskerta.avaaLista()) {
+                for (Saunomiskerta kerta : Saunomiskerta.avaaKayttajanLista()) {
                     String paiva = String.valueOf(kerta.getPaiva());
                     if (paiva.substring(0, 4).equals(syote.getText())) {
                         String tapahtuma = kerta.getSauna() + ", " + kerta.getPaiva();

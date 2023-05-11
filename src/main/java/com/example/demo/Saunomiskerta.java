@@ -6,14 +6,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 
 public class Saunomiskerta implements Serializable {
     @Serial
     private static final long serialVersionUID = -306921284770384216L;
     private LocalDate paiva;
     private String sauna;
-    static String tiedosto = "data.bin";
 
     public Saunomiskerta(LocalDate paiva, String sauna) {
         this.paiva = paiva;
@@ -28,72 +26,42 @@ public class Saunomiskerta implements Serializable {
         return sauna;
     }
 
+    // Palauttaa data.bin tiedostossa olevan Kayttaja-olion saunalistan, jonka nimi-attribuutti vastaa istunnon nimeä
+    public static ArrayList<Saunomiskerta> avaaKayttajanLista() throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Kayttaja.tiedosto));
+        ArrayList<Kayttaja> lista = (ArrayList<Kayttaja>) ois.readObject();
+        for (Kayttaja kayttaja : lista) {
+            if (kayttaja.getNimi().equalsIgnoreCase(Kayttaja.tarkistaIstunto())) {
+                System.out.println(kayttaja.getSaunalista());
+                System.out.println("Käyttäjä tunnistettu");
+                return kayttaja.getSaunalista();
+            }
+        }
+        ois.close();
+        System.out.println("Käyttäjää ei tunnistettu");
+        return null;
+    }
+
     /*
-    Käyttää metodia avaaLista() avaamaan data.bin-tiedoston, johon saunomiskerrat ovat tallennettu.
-    Luo samalla listan ja lisää sinne saunomiskerrat String-tyyppisinä jäseninä muodossa "sauna, päivämäärä".
+    Käyttää metodia avaaKayttajanLista() avaamaan data.bin-tiedoston johon, Kayttaja-oliot ovat tallennettu.
+    Luo samalla listan ja lisää sinne istuntoon tallennetun käyttäjän saunomiskerrat String-tyyppisinä jäseninä muodossa "sauna, päivämäärä".
      */
     public static ArrayList<String> luoTapahtumaLista() throws IOException, ClassNotFoundException {
+        System.out.println("Luodaan tapahtumalistaa");
         ArrayList<String> tapahtumalista = new ArrayList<>();
-        for (Saunomiskerta tapahtuma : avaaLista()) {
+        for (Saunomiskerta tapahtuma : avaaKayttajanLista()) {
+            System.out.println("Vieläkin");
             String kerta = tapahtuma.getSauna() + ", " + tapahtuma.getPaiva();
             tapahtumalista.add(kerta);
         }
         return tapahtumalista;
     }
 
-    // Luo Saunomiskerta-olion parametreista ja lisää olion listaan
-    public static void kirjoitaTiedostoon(String sauna, LocalDate paiva) throws IOException, ClassNotFoundException {
-        Saunomiskerta tapahtuma = new Saunomiskerta(paiva, sauna);
-        ObjectOutputStream oos;
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(tiedosto));
-            ArrayList<Saunomiskerta> lista = (ArrayList<Saunomiskerta>) ois.readObject();
-            lista.add(tapahtuma);
-            oos = new ObjectOutputStream(new FileOutputStream(tiedosto));
-            oos.writeObject(lista);
-            oos.close();
-        }
-        catch (IOException e) {
-            alustaTiedosto();
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(tiedosto));
-            ArrayList<Saunomiskerta> lista = (ArrayList<Saunomiskerta>) ois.readObject();
-            lista.add(tapahtuma);
-            oos = new ObjectOutputStream(new FileOutputStream(tiedosto));
-            oos.writeObject(lista);
-            oos.close();
-        }
-    }
-
-    // Luo uuden data.bin-tiedoston ja luo sinne tyhjän Saunomiskerta-oliota sisältävän ArrayListin
-    public static void alustaTiedosto() {
-        ObjectOutputStream oos;
-        {
-            try {
-                ArrayList<Saunomiskerta> lista = new ArrayList<>();
-                oos = new ObjectOutputStream(new FileOutputStream(tiedosto));
-                oos.writeObject(lista);
-                oos.close();
-                System.out.println("Tiedosto alustettu");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     // Luodaan merkkijonotyyppisistä saunomiskertoja kuvaavista olioista lista, josta on poistettu valittu alkio. Lista välitetään kirjoitaListaTiedostoon-metodille
     public static void poistaListasta(String poistettava) throws IOException, ClassNotFoundException {
         ArrayList<String> poistolista = luoTapahtumaLista();
         poistolista.remove(poistettava);
-        kirjoitaListaTiedostoon(poistolista);
-    }
-
-    // Muunnetaan listan merkkijonotyyppiset saunomiskertoja kuvaavat oliot Saunomiskerta-olioiksi ja kirjoitetaan ne data.bin-tiedostoon
-    public static void kirjoitaListaTiedostoon(ArrayList<String> lista) throws IOException, ClassNotFoundException {
-        alustaTiedosto();
-        for (String alkio : lista) {
-            Saunomiskerta olio = muunnaOlioksi(alkio);
-            kirjoitaTiedostoon(olio.getSauna(), olio.getPaiva());
-        }
+        Kayttaja.kirjoitaListaTiedostoon(poistolista);
     }
 
     // Muunnetaan muodossa "sauna, päivämäärä" oleva merkkijono-olio Saunomiskerta-olioksi
@@ -105,17 +73,9 @@ public class Saunomiskerta implements Serializable {
         return new Saunomiskerta(localDate, sauna);
     }
 
-    // Palauttaa Saunomiskerta-olioita sisältävän listan, jonka jäsenet on lisätty data.bin-tiedostosta
-    public static ArrayList<Saunomiskerta> avaaLista() throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(tiedosto));
-        ArrayList<Saunomiskerta> lista = (ArrayList<Saunomiskerta>) ois.readObject();
-        ois.close();
-        return lista;
-    }
-
     // Palauttaa parametrina saadun listan yleisimmän jäsenen
     public static String yleisinJasen(ArrayList<String> lista) {
-        String yleisin = "ei saunomiskertoja";
+        String yleisin = "";
         int suurinMaara = 0;
         for (String sauna : lista) {
             if (Collections.frequency(lista, sauna) > suurinMaara) {
@@ -129,7 +89,7 @@ public class Saunomiskerta implements Serializable {
     // Palauttaa String-olioita sisältävän listan, johon lisää avaaLista()-metodin palauttaman Saunomiskerta-olioita sisältävän listan jäsenten saunat
     public static ArrayList<String> luoSaunaLista() throws IOException, ClassNotFoundException {
         ArrayList<String> saunalista = new ArrayList<>();
-        for (Saunomiskerta saunomiskerta : avaaLista()) {
+        for (Saunomiskerta saunomiskerta : avaaKayttajanLista()) {
             saunalista.add(saunomiskerta.getSauna());
         }
         return saunalista;
@@ -148,13 +108,19 @@ public class Saunomiskerta implements Serializable {
 
     // Palauttaa merkkijonon parametreina saaduista saunasta ja määrästä
     public static String kasaaYleisinString(String sauna, int maara) {
-        return String.format("%s, %2d kpl",sauna, maara);
+        if (!sauna.equals("")) {
+            return String.format("%s, %2d kpl", sauna, maara);
+        }
+        else
+        {
+            return String.format("Ei saunomiskertoja");
+        }
     }
 
     //Luodaan lista, joka sisältää tietyn viikonpäivän niin monta kertaa kuin sinä päivänä on saunottu
     public static ArrayList<String> luoPaivaLista() throws IOException, ClassNotFoundException {
         ArrayList<String> lista = new ArrayList<>();
-        for (Saunomiskerta saunomiskerta : avaaLista()) {
+        for (Saunomiskerta saunomiskerta : avaaKayttajanLista()) {
             lista.add(String.valueOf(saunomiskerta.getPaiva().getDayOfWeek()));
         }
         return lista;
@@ -163,7 +129,7 @@ public class Saunomiskerta implements Serializable {
     // Tarkastetaan onko saunomiskertoja tallennettu senhetkiselle päivämäärälle
     public static ArrayList<Saunomiskerta> etsiVuosipaiva() throws IOException, ClassNotFoundException {
         ArrayList<Saunomiskerta> saunalista = new ArrayList<>();
-        for (Saunomiskerta saunakerta : avaaLista()) {
+        for (Saunomiskerta saunakerta : avaaKayttajanLista()) {
             if (String.valueOf(saunakerta.getPaiva()).substring(5,10).equals(String.valueOf(LocalDateTime.now()).substring(5,10))) {
                 saunalista.add(saunakerta);
             }
