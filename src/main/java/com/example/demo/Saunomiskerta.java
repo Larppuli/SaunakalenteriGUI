@@ -32,13 +32,10 @@ public class Saunomiskerta implements Serializable {
         ArrayList<Kayttaja> lista = (ArrayList<Kayttaja>) ois.readObject();
         for (Kayttaja kayttaja : lista) {
             if (kayttaja.getNimi().equalsIgnoreCase(Kayttaja.tarkistaIstunto())) {
-                System.out.println(kayttaja.getSaunalista());
-                System.out.println("Käyttäjä tunnistettu");
                 return kayttaja.getSaunalista();
             }
         }
         ois.close();
-        System.out.println("Käyttäjää ei tunnistettu");
         return null;
     }
 
@@ -47,10 +44,8 @@ public class Saunomiskerta implements Serializable {
     Luo samalla listan ja lisää sinne istuntoon tallennetun käyttäjän saunomiskerrat String-tyyppisinä jäseninä muodossa "sauna, päivämäärä".
      */
     public static ArrayList<String> luoTapahtumaLista() throws IOException, ClassNotFoundException {
-        System.out.println("Luodaan tapahtumalistaa");
         ArrayList<String> tapahtumalista = new ArrayList<>();
         for (Saunomiskerta tapahtuma : avaaKayttajanLista()) {
-            System.out.println("Vieläkin");
             String kerta = tapahtuma.getSauna() + ", " + tapahtuma.getPaiva();
             tapahtumalista.add(kerta);
         }
