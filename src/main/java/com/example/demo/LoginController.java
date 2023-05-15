@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +23,7 @@ public class LoginController implements Initializable {
 
     public void kirjautuminen(ActionEvent event) throws IOException, ClassNotFoundException {
         for (Kayttaja kayttaja : Kayttaja.avaaLista()) {
-            if (kayttaja.getNimi().equalsIgnoreCase(kayttajatunnus.getText()) && !(kayttajatunnus.getText().equalsIgnoreCase("admin")) && kayttaja.getSalasana().equals(salasana.getText())) {
+            if (kayttaja.getNimi().equalsIgnoreCase(kayttajatunnus.getText()) && !(kayttajatunnus.getText().equalsIgnoreCase("admin")) && BCrypt.checkpw(salasana.getText(), kayttaja.getSalasana())) {
                 Kayttaja.luoIstunto(kayttajatunnus.getText());
                 FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(), 600, 400);
@@ -30,7 +31,7 @@ public class LoginController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
-            else if (kayttaja.getNimi().equalsIgnoreCase(kayttajatunnus.getText()) && kayttaja.getSalasana().equals(salasana.getText())) {
+            else if (kayttaja.getNimi().equalsIgnoreCase(kayttajatunnus.getText()) && BCrypt.checkpw(salasana.getText(), kayttaja.getSalasana())) {
                 Kayttaja.luoIstunto(kayttajatunnus.getText());
                 FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("admin.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(), 600, 400);
