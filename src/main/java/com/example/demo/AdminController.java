@@ -39,6 +39,10 @@ public class AdminController implements Initializable {
             onnistuminen.setTextFill(Color.RED);
             onnistuminen.setText("Käyttäjätunnus on jo käytössä");
         }
+        else if (kayttajatunnus.getText().isBlank() || salasana1.getText().isBlank() || salasana2.getText().isBlank()) {
+            onnistuminen.setTextFill(Color.RED);
+            onnistuminen.setText("Täytä kaikki kentät");
+        }
         else {
             onnistuminen.setTextFill(Color.RED);
             onnistuminen.setText("Salasanat eivät täsmää");
