@@ -28,7 +28,7 @@
             <Button id="nappi2" layoutX="218.0" layoutY="217.0" mnemonicParsing="false" onAction="#luoKayttaja" prefHeight="55.0" prefWidth="154.0" stylesheets="@styles.css" text="Luo käyttäjä" />
             <PasswordField fx:id="salasana1" layoutX="220.0" layoutY="148.0" promptText="Salasana" />
             <PasswordField fx:id="salasana2" layoutX="221.0" layoutY="183.0" promptText="Vahvista salasana" />
-            <Label fx:id="onnistuminen" layoutX="226.0" layoutY="283.0" prefHeight="21.0" prefWidth="183.0" textFill="#e45959">
+            <Label fx:id="onnistuminen" layoutX="171.0" layoutY="284.0" prefHeight="21.0" prefWidth="248.0" style="-fx-alignment: center;" textFill="#e45959">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
