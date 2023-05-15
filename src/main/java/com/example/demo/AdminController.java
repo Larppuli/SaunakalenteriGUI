@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -25,16 +26,23 @@ public class AdminController implements Initializable {
     @FXML
     protected void luoKayttaja(ActionEvent event) throws IOException, ClassNotFoundException {
         ArrayList lista =  new ArrayList<Saunomiskerta>();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("admin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         if (!(kayttajatunnus.getText()=="") && !(salasana1.getText()=="") && salasana1.getText().equals(salasana2.getText()) && Kayttaja.nimitarkistus(kayttajatunnus.getText())) {
             Kayttaja.lisaaKayttajaTiedostoon(kayttajatunnus.getText(), salasana1.getText(), lista);
+            kayttajatunnus.setText("");
+            salasana1.setText("");
+            salasana2.setText("");
+            onnistuminen.setTextFill(Color.GREEN);
+            onnistuminen.setText("Käyttäjä lisätty");
         }
-        else  {
-            onnistuminen.setText("Nimi on jo käytössä");
+        else if (!Kayttaja.nimitarkistus(kayttajatunnus.getText())) {
+            onnistuminen.setTextFill(Color.RED);
+            onnistuminen.setText("Käyttäjätunnus on jo käytössä");
         }
-        stage.setScene(scene);
+        else {
+            onnistuminen.setTextFill(Color.RED);
+            onnistuminen.setText("Salasanat eivät täsmää");
+        }
     }
 
     // Määritellään uloskirjautuminen. Palataan kirjautumisvalikkoon ja pyyhitään istuntodata
