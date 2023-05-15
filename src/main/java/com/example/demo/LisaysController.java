@@ -7,7 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.*;
 import java.net.URL;
@@ -18,6 +20,7 @@ public class LisaysController implements Initializable {
     private Stage stage;
     @FXML private TextField sauna;
     @FXML private DatePicker paiva;
+    @FXML private Label onnistuminen;
 
 
     @FXML
@@ -31,14 +34,21 @@ public class LisaysController implements Initializable {
 
     // Määritellään saunomiskerran tallennus
     @FXML
-    public void tallennus(ActionEvent event) throws IOException, ClassNotFoundException, InterruptedException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("lisays.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+    public void tallennus(ActionEvent event) throws IOException, ClassNotFoundException {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         if (!(sauna.getText()=="") && !Objects.isNull(paiva.getValue())) {
             Kayttaja.kirjoitaTiedostoon(sauna.getText(), paiva.getValue());
+            onnistuminen.setTextFill(Color.GREEN);
+            onnistuminen.setText("Saunomiskerta tallennettu");
+            sauna.setText("");
+            paiva.setValue(null);
         }
-        stage.setScene(scene);
+        else {
+            onnistuminen.setTextFill(Color.RED);
+            onnistuminen.setText("Täytä molemmat kentät");
+
+        }
+
     }
 
     @Override
