@@ -4,6 +4,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class Kayttaja implements Serializable{
 
@@ -52,7 +53,6 @@ public class Kayttaja implements Serializable{
                 oos = new ObjectOutputStream(new FileOutputStream(tiedosto));
                 oos.writeObject(lista);
                 oos.close();
-                System.out.println("Tiedosto alustettu");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -68,7 +68,6 @@ public class Kayttaja implements Serializable{
                 oos = new ObjectOutputStream(new FileOutputStream(istunto));
                 oos.writeObject(lista);
                 oos.close();
-                System.out.println("Istunto alustettu");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -84,12 +83,13 @@ public class Kayttaja implements Serializable{
         return kayttaja;
     }
 
+    // Kirjoitetaan session.bin-tiedostoon kirjautunut käyttäjätunnus
     public static void luoIstunto(String kayttajatunnus) throws IOException, ClassNotFoundException {
         ObjectOutputStream oos;
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(istunto));
             ArrayList<String> lista = (ArrayList<String>) ois.readObject();
-            lista.add(kayttajatunnus);
+            lista.add(kayttajatunnus.substring(0, 1).toUpperCase() + kayttajatunnus.substring(1).toLowerCase());
             oos = new ObjectOutputStream(new FileOutputStream(istunto));
             oos.writeObject(lista);
             oos.close();
@@ -108,7 +108,7 @@ public class Kayttaja implements Serializable{
 
     // Luo Saunomiskerta-olion parametreista ja lisää olion listaan
     public static void lisaaKayttajaTiedostoon(String nimi, String salasana, ArrayList<Saunomiskerta> saunalista) throws IOException, ClassNotFoundException {
-        Kayttaja kayttaja = new Kayttaja(nimi, salasana, saunalista);
+        Kayttaja kayttaja = new Kayttaja(nimi, BCrypt.hashpw(salasana, BCrypt.gensalt()), saunalista);
         ObjectOutputStream oos;
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(tiedosto));
@@ -136,7 +136,7 @@ public class Kayttaja implements Serializable{
         ArrayList<Kayttaja> lista = new ArrayList<>(avaaLista());
         for (Kayttaja kayttaja : avaaLista()) {
             if (istuja.equalsIgnoreCase(kayttaja.getNimi())) {
-                lista.remove(lista.indexOf(lista.stream().filter(k -> istuja.equals(k.getNimi())).findFirst().orElse(null)));
+                lista.remove(lista.indexOf(lista.stream().filter(k -> istuja.equalsIgnoreCase(k.getNimi())).findFirst().orElse(null)));
                 kayttaja.saunalista.add(new Saunomiskerta(paiva, sauna));
                 lista.add(kayttaja);
             }
@@ -147,6 +147,10 @@ public class Kayttaja implements Serializable{
         oos.close();
      }
 
+    /*
+     * Metodi saa listan metodina, joka muunnetaan Saunomiskerta-olioita sisältäväksi listaksi. Kirjautuneen käyttäjän
+     * saunalista korvataan muunnetulla listalla data.bin-tiedostoon
+     */
     public static void kirjoitaListaTiedostoon(ArrayList<String> tapahtumalista) throws IOException, ClassNotFoundException {
         String istuja = tarkistaIstunto();
         ObjectOutputStream oos;
