@@ -18,7 +18,7 @@ public class Saunamäärä {
     public static ArrayList<Saunamäärä> luoPieChartLista() throws IOException, ClassNotFoundException {
         ArrayList<Saunamäärä> lista = new ArrayList<>();
         ArrayList<String> testilista = new ArrayList<>();
-        for (Saunomiskerta saunomiskerta : Saunomiskerta.avaaLista()) {
+        for (Saunomiskerta saunomiskerta : Saunomiskerta.avaaKayttajanLista()) {
             if (!testilista.contains(saunomiskerta.getSauna())) {
                 testilista.add(saunomiskerta.getSauna());
                 lista.add(new Saunamäärä(saunomiskerta.getSauna(), Saunomiskerta.saunomiskertojaSaunassa(saunomiskerta.getSauna(), Saunomiskerta.luoSaunaLista())));

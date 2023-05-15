@@ -65,7 +65,7 @@ public class KaikkiController implements Initializable {
 
         try {
             // Lasketaan kaikkien saunomiskertojen määrä ja lisätään luku labeliin "yhteensä"
-            yhteensa.setText(String.valueOf(Saunomiskerta.avaaLista().size()));
+            yhteensa.setText(String.valueOf(Saunomiskerta.avaaKayttajanLista().size()));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
