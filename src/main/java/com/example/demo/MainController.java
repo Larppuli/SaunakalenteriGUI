@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     private Stage stage = new Stage(StageStyle.DECORATED);
+    @FXML private Label otsikko;
 
     @FXML
     protected void lisaysScene(ActionEvent event) throws IOException {
@@ -55,5 +57,12 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            otsikko.setText(String.format("Tervetuloa %s", Kayttaja.tarkistaIstunto()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
