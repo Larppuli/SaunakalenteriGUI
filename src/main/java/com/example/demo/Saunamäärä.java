@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Saunamäärä {
     private String sauna;
@@ -19,8 +20,8 @@ public class Saunamäärä {
         ArrayList<Saunamäärä> lista = new ArrayList<>();
         ArrayList<String> testilista = new ArrayList<>();
         for (Saunomiskerta saunomiskerta : Saunomiskerta.avaaKayttajanLista()) {
-            if (!testilista.contains(saunomiskerta.getSauna())) {
-                testilista.add(saunomiskerta.getSauna());
+            if (!testilista.contains(saunomiskerta.getSauna().toLowerCase())) {
+                testilista.add(saunomiskerta.getSauna().toLowerCase());
                 lista.add(new Saunamäärä(saunomiskerta.getSauna(), Saunomiskerta.saunomiskertojaSaunassa(saunomiskerta.getSauna(), Saunomiskerta.luoSaunaLista())));
             }
         }
