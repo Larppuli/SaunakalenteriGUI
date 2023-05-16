@@ -85,7 +85,7 @@ public class Saunomiskerta implements Serializable {
     public static ArrayList<String> luoSaunaLista() throws IOException, ClassNotFoundException {
         ArrayList<String> saunalista = new ArrayList<>();
         for (Saunomiskerta saunomiskerta : avaaKayttajanLista()) {
-            saunalista.add(saunomiskerta.getSauna());
+            saunalista.add(saunomiskerta.getSauna().toLowerCase());
         }
         return saunalista;
     }
