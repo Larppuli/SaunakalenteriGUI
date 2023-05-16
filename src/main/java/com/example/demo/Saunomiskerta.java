@@ -94,7 +94,7 @@ public class Saunomiskerta implements Serializable {
     public static int saunomiskertojaSaunassa(String sauna, ArrayList<String> lista) {
         int counter = 0;
         for (String kerta : lista) {
-            if (kerta.equals(sauna)) {
+            if (kerta.equalsIgnoreCase(sauna)) {
                 counter += 1;
             }
         }
