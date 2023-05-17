@@ -16,7 +16,7 @@
    <center>
       <ScrollPane maxHeight="1100.0" maxWidth="586.0" minHeight="356.0" minWidth="586.0" prefHeight="356.0" prefWidth="586.0" style="-fx-background-color: #3E3E3E;" stylesheets="@styles.css">
          <content>
-            <AnchorPane prefHeight="1100.0" prefWidth="571.0" style="-fx-background-color: #3E3E3E;">
+            <AnchorPane prefHeight="1100.0" prefWidth="570.0" style="-fx-background-color: #3E3E3E;">
                <children>
                   <PieChart id="myPieChart" fx:id="myPieChart" layoutX="12.0" prefHeight="448.0" prefWidth="550.0" style="-fx-background-color: #3E3E3E;" stylesheets="@styles.css" title="Saunotut saunat" />
                   <BarChart fx:id="myBarChart" layoutX="-7.0" layoutY="502.0" prefHeight="371.0" prefWidth="565.0" style="-fx-background-color: #3E3E3E;" stylesheets="@styles.css" title="Saunomiset viikonpäivinä">
