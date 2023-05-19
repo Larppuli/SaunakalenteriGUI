@@ -81,7 +81,7 @@ public class Saunomiskerta implements Serializable {
         return yleisin;
     }
 
-    // Palauttaa String-olioita sisältävän listan, johon lisää avaaLista()-metodin palauttaman Saunomiskerta-olioita sisältävän listan jäsenten saunat
+    // Palauttaa String-olioita sisältävän listan, johon lisää avaaKayttajanLista()-metodin palauttaman Saunomiskerta-olioita sisältävän listan jäsenten saunat
     public static ArrayList<String> luoSaunaLista() throws IOException, ClassNotFoundException {
         ArrayList<String> saunalista = new ArrayList<>();
         for (Saunomiskerta saunomiskerta : avaaKayttajanLista()) {
@@ -92,13 +92,9 @@ public class Saunomiskerta implements Serializable {
 
     // Palauttaa parametrinä saadun saunan esiintymiskerrat parametrina saadussa listassa
     public static int saunomiskertojaSaunassa(String sauna, ArrayList<String> lista) {
-        int counter = 0;
-        for (String kerta : lista) {
-            if (kerta.equalsIgnoreCase(sauna)) {
-                counter += 1;
-            }
-        }
-        return counter;
+        return (int) lista.stream()
+                .filter(kerta -> kerta.equalsIgnoreCase(sauna))
+                .count();
     }
 
     // Palauttaa merkkijonon parametreina saaduista saunasta ja määrästä
@@ -130,18 +126,6 @@ public class Saunomiskerta implements Serializable {
             }
         }
         return saunalista;
-    }
-
-    //Muunnetaan etsiVuosipäivä()-metodin palauttama lista merkkijonoksi. METODI EI KÄYTÖSSÄ
-    public static String muunnaVuosipaivaMerkkijonoksi() throws IOException, ClassNotFoundException {
-        String alimerkkijono;
-        String merkkijono = "";
-        for (Saunomiskerta kerta : etsiVuosipaiva()) {
-            alimerkkijono = "";
-            alimerkkijono = alimerkkijono.concat(kerta.getSauna() + ", " + kerta.getPaiva() + "\n");
-            merkkijono = merkkijono.concat(alimerkkijono);
-        }
-        return merkkijono;
     }
 
     // Palauttaa senhetkiselle päivämäärälle aikaisempina vuosina tallennetut saunomiskerrat merkkijonolistassa
