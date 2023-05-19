@@ -37,7 +37,7 @@ public class KaikkiController implements Initializable {
     }
 
     @FXML
-    public String handleMouseClick(MouseEvent arg0) {
+    public String handleMouseClick() {
         valittu = myListView.getSelectionModel().getSelectedItem();
         return valittu;
     }
