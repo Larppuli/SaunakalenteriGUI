@@ -15,6 +15,9 @@ public class Main extends Application {
         Scene scene1 = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Saunakalenteri");
         stage.initStyle(StageStyle.DECORATED);
+        stage.setOnCloseRequest(event -> {
+            Kayttaja.alustaIstunto();
+        });
         stage.setScene(scene1);
         stage.show();
     }
