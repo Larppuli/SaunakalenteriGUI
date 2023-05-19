@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,12 +9,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
@@ -21,6 +26,9 @@ public class AdminController implements Initializable {
     @FXML private TextField salasana1;
     @FXML private TextField salasana2;
     @FXML private Label onnistuminen;
+    @FXML private ListView<String> kayttajalista;
+    @FXML ObservableList<String> listViewData = FXCollections.observableArrayList();
+    @FXML private String valittu;
 
     // Määritellään uuden käyttäjän lisäys
     @FXML
@@ -45,6 +53,11 @@ public class AdminController implements Initializable {
             onnistuminen.setTextFill(Color.RED);
             onnistuminen.setText("Salasanat eivät täsmää");
         }
+        listViewData.clear();
+        Kayttaja.avaaLista().stream()
+                .filter(kayttaja -> !kayttaja.getNimi().equalsIgnoreCase("admin"))
+                .map(Kayttaja::getNimi)
+                .forEach(listViewData::add);
     }
 
     // Määritellään uloskirjautuminen. Palataan kirjautumisvalikkoon ja pyyhitään istuntodata
@@ -58,8 +71,36 @@ public class AdminController implements Initializable {
         Kayttaja.alustaIstunto();
     }
 
+    @FXML
+    public String handleMouseClick(MouseEvent arg0) {
+        valittu = kayttajalista.getSelectionModel().getSelectedItem();
+        return valittu;
+    }
+
+    @FXML
+    public void kayttajanPoisto() throws IOException, ClassNotFoundException {
+        ArrayList<Kayttaja> lista = new ArrayList<>(Kayttaja.avaaLista());
+        lista.removeIf(kayttaja -> kayttaja.getNimi().equals(valittu));
+        Kayttaja.korvaaTiedosto(lista);
+        listViewData.clear();
+        Kayttaja.avaaLista().stream()
+                .filter(kayttaja -> !kayttaja.getNimi().equalsIgnoreCase("admin"))
+                .map(Kayttaja::getNimi)
+                .forEach(listViewData::add);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+        try {
+            Kayttaja.avaaLista().stream()
+                    .filter(kayttaja -> !kayttaja.getNimi().equalsIgnoreCase("admin"))
+                    .map(Kayttaja::getNimi)
+                    .forEach(listViewData::add);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        kayttajalista.setItems(listViewData);
     }
 }
