@@ -40,7 +40,11 @@
                   <Font name="Arial" size="18.0" />
                </font>
             </Text>
-            <Button id="edellinen" layoutX="225.0" layoutY="221.0" mnemonicParsing="false" onAction="#kayttajanPoisto" prefHeight="26.0" prefWidth="64.0" stylesheets="@styles.css" text="Poista" />
+            <Button id="nappi3" layoutX="215.0" layoutY="221.0" mnemonicParsing="false" onAction="#kayttajanPoisto" prefHeight="32.0" prefWidth="74.0" stylesheets="@styles.css" text="Poista">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </center>
