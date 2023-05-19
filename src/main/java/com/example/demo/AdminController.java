@@ -24,11 +24,9 @@ public class AdminController implements Initializable {
 
     // Määritellään uuden käyttäjän lisäys
     @FXML
-    protected void luoKayttaja(ActionEvent event) throws IOException, ClassNotFoundException {
-        ArrayList lista =  new ArrayList<Saunomiskerta>();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    protected void luoKayttaja() throws IOException, ClassNotFoundException {
         if (!(kayttajatunnus.getText()=="") && !(salasana1.getText()=="") && salasana1.getText().equals(salasana2.getText()) && Kayttaja.nimitarkistus(kayttajatunnus.getText())) {
-            Kayttaja.lisaaKayttajaTiedostoon(kayttajatunnus.getText(), salasana1.getText(), lista);
+            Kayttaja.lisaaKayttajaTiedostoon(kayttajatunnus.getText(), salasana1.getText(), new ArrayList<Saunomiskerta>());
             kayttajatunnus.setText("");
             salasana1.setText("");
             salasana2.setText("");
