@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class Kayttaja implements Serializable{
-
+    private static final long serialVersionUID = -775696572942846196L;
     String nimi;
     String salasana;
     ArrayList<Saunomiskerta> saunalista;
@@ -145,6 +145,14 @@ public class Kayttaja implements Serializable{
         oos.writeObject(lista);
         oos.close();
      }
+
+     // Korvaa data.bin-tiedostossa olevan käyttäjälistan
+    public static void korvaaTiedosto(ArrayList<Kayttaja> kayttajalista) throws IOException {
+        ObjectOutputStream oos;
+        oos = new ObjectOutputStream(new FileOutputStream(tiedosto));
+        oos.writeObject(kayttajalista);
+        oos.close();
+    }
 
     /*
      * Metodi saa listan metodina, joka muunnetaan Saunomiskerta-olioita sisältäväksi listaksi. Kirjautuneen käyttäjän
