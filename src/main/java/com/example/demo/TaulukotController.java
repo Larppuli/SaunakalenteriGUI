@@ -27,9 +27,6 @@ public class TaulukotController implements Initializable {
     private PieChart myPieChart;
 
     @FXML
-    private Label vuosipaivat;
-
-    @FXML
     private ListView<String> myListView;
 
     // Määritellään main-sceneen siirtyminen
