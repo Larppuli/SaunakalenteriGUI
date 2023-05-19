@@ -44,7 +44,7 @@ public class Kayttaja implements Serializable{
         return lista;
     }
 
-    // Luo uuden data.bin-tiedoston ja luo sinne tyhjän Kayttaja-oliota sisältävän ArrayListin
+    // Luo uuden data.bin-tiedoston ja luo sinne tyhjän käyttäjäolioita sisältävän ArrayListin
     public static void alustaTiedosto() {
         ObjectOutputStream oos;
         {
@@ -59,7 +59,7 @@ public class Kayttaja implements Serializable{
         }
     }
 
-    // Luo uuden session.bin-tiedoston ja luo sinne tyhjän Merkkijonoja sisältävän ArrayListin
+    // Luo uuden session.bin-tiedoston ja luo sinne tyhjän merkkijonoja sisältävän ArrayListin
     public static void alustaIstunto() {
         ObjectOutputStream oos;
         {
@@ -83,7 +83,7 @@ public class Kayttaja implements Serializable{
         return kayttaja;
     }
 
-    // Kirjoitetaan session.bin-tiedostoon kirjautunut käyttäjätunnus
+    // Kirjoitetaan session.bin-tiedostoon kirjautunut käyttäjätunnus. Luodaan session.bin-tiedosto jos ei vielä olemassa
     public static void luoIstunto(String kayttajatunnus) throws IOException, ClassNotFoundException {
         ObjectOutputStream oos;
         try {
@@ -98,7 +98,7 @@ public class Kayttaja implements Serializable{
             alustaIstunto();
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(istunto));
             ArrayList<String> lista = (ArrayList<String>) ois.readObject();
-            lista.add(kayttajatunnus);
+            lista.add(kayttajatunnus.substring(0, 1).toUpperCase() + kayttajatunnus.substring(1).toLowerCase());
             oos = new ObjectOutputStream(new FileOutputStream(istunto));
             oos.writeObject(lista);
             oos.close();
@@ -106,7 +106,7 @@ public class Kayttaja implements Serializable{
 
     }
 
-    // Luo Saunomiskerta-olion parametreista ja lisää olion listaan
+    // Luo saunomiskertaolion parametreista ja lisää olion data.bin-tiedostoon
     public static void lisaaKayttajaTiedostoon(String nimi, String salasana, ArrayList<Saunomiskerta> saunalista) throws IOException, ClassNotFoundException {
         Kayttaja kayttaja = new Kayttaja(nimi, BCrypt.hashpw(salasana, BCrypt.gensalt()), saunalista);
         ObjectOutputStream oos;
@@ -129,7 +129,7 @@ public class Kayttaja implements Serializable{
         }
     }
 
-    // Metodi lisää uuden saunomiskerran istuntoa vastaavan käyttäjän saunalistaan ja päivitetty lista kierjoitetaan tiedostoon
+    // Metodi lisää uuden saunomiskerran istuntoa vastaavan käyttäjän saunalistaan ja päivitetty lista kirjoitetaan tiedostoon
      public static void kirjoitaTiedostoon(String sauna, LocalDate paiva) throws IOException, ClassNotFoundException {
         String istuja = tarkistaIstunto();
         ObjectOutputStream oos;
@@ -141,7 +141,6 @@ public class Kayttaja implements Serializable{
                 lista.add(kayttaja);
             }
         }
-        alustaTiedosto();
         oos = new ObjectOutputStream(new FileOutputStream(tiedosto));
         oos.writeObject(lista);
         oos.close();
@@ -157,7 +156,6 @@ public class Kayttaja implements Serializable{
         ArrayList<Kayttaja> kayttajalista = new ArrayList<>(avaaLista());
         ArrayList<Saunomiskerta> saunalista = (ArrayList<Saunomiskerta>) tapahtumalista.stream().map(tapahtuma -> Saunomiskerta.muunnaOlioksi(tapahtuma)).collect(Collectors.toList());
         kayttajalista.stream().filter(k -> istuja.equalsIgnoreCase(k.getNimi())).findFirst().orElse(null).setSaunalista(saunalista);
-        alustaTiedosto();
         oos = new ObjectOutputStream(new FileOutputStream(tiedosto));
         oos.writeObject(kayttajalista);
         oos.close();
