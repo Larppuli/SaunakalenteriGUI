@@ -106,7 +106,7 @@ public class Kayttaja implements Serializable{
 
     }
 
-    // Luo saunomiskertaolion parametreista ja lisää olion data.bin-tiedostoon
+    // Luo käyttäjäolion parametreista ja lisää olion data.bin-tiedostoon
     public static void lisaaKayttajaTiedostoon(String nimi, String salasana, ArrayList<Saunomiskerta> saunalista) throws IOException, ClassNotFoundException {
         Kayttaja kayttaja = new Kayttaja(nimi, BCrypt.hashpw(salasana, BCrypt.gensalt()), saunalista);
         ObjectOutputStream oos;
@@ -155,7 +155,7 @@ public class Kayttaja implements Serializable{
     }
 
     /*
-     * Metodi saa listan metodina, joka muunnetaan Saunomiskerta-olioita sisältäväksi listaksi. Kirjautuneen käyttäjän
+     * Metodi saa merkkijonolistan parametrina, joka muunnetaan Saunomiskerta-olioita sisältäväksi listaksi. Kirjautuneen käyttäjän
      * saunalista korvataan muunnetulla listalla data.bin-tiedostoon
      */
     public static void kirjoitaListaTiedostoon(ArrayList<String> tapahtumalista) throws IOException, ClassNotFoundException {
